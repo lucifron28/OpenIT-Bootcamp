@@ -498,23 +498,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CL3\\.nuget\\packages\\": {},
+    "C:\\Users\\Ron\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Cada-OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\StudentEnrollmentApi.csproj",
+      "projectUniqueName": "C:\\Users\\Ron\\Documents\\OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\StudentEnrollmentApi.csproj",
       "projectName": "StudentEnrollmentApi",
-      "projectPath": "C:\\Cada-OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\StudentEnrollmentApi.csproj",
-      "packagesPath": "C:\\Users\\CL3\\.nuget\\packages\\",
-      "outputPath": "C:\\Cada-OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\obj\\",
+      "projectPath": "C:\\Users\\Ron\\Documents\\OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\StudentEnrollmentApi.csproj",
+      "packagesPath": "C:\\Users\\Ron\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ron\\Documents\\OpenIT-Bootcamp\\Day-2\\StudentEnrollmentApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\CL3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ron\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -575,7 +575,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

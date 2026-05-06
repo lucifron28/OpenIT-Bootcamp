@@ -1,0 +1,6 @@
+@EnrollmentSystemApi_HostAddress = http://localhost:5258
+
+GET {{EnrollmentSystemApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
