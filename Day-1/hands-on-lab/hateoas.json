@@ -1,0 +1,239 @@
+{
+    "_links": {
+        "self": {
+            "href": "/books"
+        }
+    },
+    "_embedded": {
+        "books": [
+            {
+                "id": 1,
+                "title": "Wuthering Heights",
+                "authors": ["Emily Brontë"],
+                "published_year": 1847,
+                "available": true,
+                "genres": ["Gothic Fiction", "Romance", "Revenge Tragedy", "Victorian Realism"],
+                "publisher": {
+                    "name": "Penguin Classics",
+                    "city": "London, UK"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/1",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/penguin-classics",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/1",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/1",
+                        "method": "DELETE"
+                }
+                }
+            },
+            {
+                "id": 2,
+                "title": "Pride and Prejudice",
+                "authors": ["Jane Austen"],
+                "published_year": 1813,
+                "available": true,
+                "genres": ["Romance", "Satire", "Social Commentary"],
+                "publisher": {
+                    "name": "Penguin Classics",
+                    "city": "London, UK"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/2",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/penguin-classics",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/2",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/2",
+                        "method": "DELETE"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "title": "The Great Gatsby",
+                "authors": ["F. Scott Fitzgerald"],
+                "published_year": 1925,
+                "available": true,
+                "genres": ["American Literature", "Literary Fiction", "Jazz Age"],
+                "publisher": {
+                    "name": "Scribner",
+                    "city": "New York, USA"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/3",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/scribner",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/3",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/3",
+                        "method": "DELETE"
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "title": "To Kill a Mockingbird",
+                "authors": ["Harper Lee"],
+                "published_year": 1960,
+                "available": true,
+                "genres": ["Southern Gothic", "Coming of Age", "Social Injustice"],
+                "publisher": {
+                    "name": "J. B. Lippincott",
+                    "city": "Philadelphia, USA"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/4",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/j-b-lippincott",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/4",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/4",
+                        "method": "DELETE"
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "title": "1984",
+                "authors": ["George Orwell"],
+                "published_year": 1949,
+                "available": false,
+                "genres": ["Dystopian", "Science Fiction", "Political Fiction"],
+                "publisher": {
+                    "name": "Secker & Warburg",
+                    "city": "London, UK"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/5",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/secker-and-warburg",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/5",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/5",
+                        "method": "DELETE"
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "title": "Jane Eyre",
+                "authors": ["Charlotte Brontë"],
+                "published_year": 1847,
+                "available": true,
+                "genres": ["Gothic Fiction", "Romance", "Bildungsroman"],
+                "publisher": {
+                    "name": "Smith, Elder & Co.",
+                    "city": "London, UK"
+                },
+                "_links": {
+                    "self": {
+                        "href": "/books/6",
+                        "method": "GET"
+                    },
+                    "collection": {
+                        "href": "/books",
+                        "method": "GET"
+                    },
+                    "publisher": {
+                        "href": "/publishers/smith-elder-co",
+                        "method": "GET"
+                    },
+                    "add book": {
+                        "href": "/books",
+                        "method": "POST"
+                    },
+                    "update book": {
+                        "href": "/books/6",
+                        "method": "PUT"
+                    },
+                    "delete book": {
+                        "href": "/books/6",
+                        "method": "DELETE"
+                    }
+                }
+            }
+        ]
+    }
+}

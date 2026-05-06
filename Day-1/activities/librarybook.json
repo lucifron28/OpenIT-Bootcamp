@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "title": "Wuthering Heights",
+    "authors": ["Emily Brontë"],
+    "published_year": 1847,
+    "available": true,
+    "genres": ["Gothic Fiction", "Romance", "Revege Tragedy", "Victorian Realism"],
+    "publisher": {
+        "name" : "Penguin Classics",
+        "city": "New York, USA"
+    }
+}

@@ -1,0 +1,80 @@
+Design a Movie Watchlist REST API - Levels 2 & 3
+
+Scenario: Build a REST API for a Movie Watchlist (title, year, genre, watched: bool, rating: float)
+
+1. Design 6+ endpoints using correct HTTP verbs (Level 2):
+GET /movies/{id}
+PUT /movies/{id} DELETE /movies/{id} GET /movies/{id}/reviews
+
+2. For GET/movies - add query parameter support:
+?genre=action & ?watched=false & ?sort=rating&order=desc & ?page=1&size=5
+
+3. Explain the difference between GET /movies/5 and GET /movies?id=5
+When should you use each? (discuss with a classmate)
+
+4. Add a HATEOAS _links section to GET /movies/{id} with at least 5 links
+
+5. What HTTP status codes would you return for:
+Successful creation? Resource not found? Validation error?
+
+Group discussion: Compare your URL structures with a classmate!
+
+
+1.
+GET /movies
+GET /movies/{id}
+POST /movies
+POST /movies/{id}
+PUT /movies/{id}
+DELETE /movies/{id}
+GET /movies/{id}/reviews/{id}
+GET /movies/{id}/director/
+GET /movies/{id}/director/{id}
+GET /movies/{id}/genres
+GET /movies/{id}/casts
+POST /movies/{id}/borrow
+
+2.
+?genre=romance
+?title=Pride%20and%20Prejudice
+?watched=false
+?sort=rating&order=desc
+?page=1&size=10
+GET /movies?genre=romance&?author=Jane%20Austen&sort=rating&order=asc&page=2&size=10
+GET /movies?title=Pride%20and%20Prejudice
+
+
+3. GET /movies/5 is the literal object endpoint or a path parameter which is used to identify a unique resource and it is required 
+while GET /movies?id=5 is a query parameter is used for sorting, filtering and pagination and it is optional
+
+
+4. 
+{
+    "id": 1,
+    "title": "Pride and Prejudice",
+    "year": 2005,
+    "genre": "romance",
+    "watched": false,
+    "rating": 10,
+    "directors": ["Joe Wright"],
+    "casts": ["Keira Knightley", "Matthew Macfayden"]
+    "_links: {
+        "self": { "href": "/movies/{id}", "method: "GET}.
+        "update": { "href": "/movies/{id}", "method: "PUT"},
+        "delete": { "href": "/movies/{id}", "method: "DELETE"},
+        "borrow": { "href": "/movies/{id}", "method: "POST"},
+        "return": { "href": "/movies/{id}", "method: "POST"},
+        "review": { "href": "/movies/{id}", "method: "POST"},
+        "colllection": { "href": "/movies", "method: "POST"},
+        "directors": { "href": "/movies/directors", "method: "GET"},
+        "casts": { "href": "/movies/{id}/casts", "method": "GET"}
+    }
+}
+
+5. 
+200 OK
+201 Created
+204 No content 
+
+404 Not found
+405 Method not allowed

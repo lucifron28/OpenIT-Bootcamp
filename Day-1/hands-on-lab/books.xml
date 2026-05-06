@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+    <book id="1">
+        <title>Wuthering Heights</title>
+        <authors>
+            <author>Emily Brontë</author>
+        </authors>
+        <published_year>1847</published_year>
+        <available>true</available>
+        <genres>
+            <genre>Gothic Fiction</genre>
+            <genre>Romance</genre>
+            <genre>Revenge Tragedy</genre>
+            <genre>Victorian Realism</genre>
+        </genres>
+        <publisher>
+            <name>Penguin Classics</name>
+            <location>New York, USA</location>
+        </publisher>
+    </book>
+    <book id="2">
+        <title>Pride and Prejudice</title>
+        <authors>
+            <author>Jane Austen</author>
+        </authors>
+        <published_year>1813</published_year>
+        <available>true</available>
+        <genres>
+            <genre>Romance</genre>
+            <genre>Satire</genre>
+            <genre>Social Commentary</genre>
+        </genres>
+        <publisher>
+            <name>Penguin Classics</name>
+            <location>London, UK</location>
+        </publisher>
+    </book>
+    <book id="3">
+        <title>The Great Gatsby</title>
+        <authors>
+            <author>F. Scott Fitzgerald</author>
+        </authors>
+        <published_year>1925</published_year>
+        <available>true</available>
+        <genres>
+            <genre>American Literature</genre>
+            <genre>Literary Fiction</genre>
+            <genre>Jazz Age</genre>
+        </genres>
+        <publisher>
+            <name>Scribner</name>
+            <location>New York, USA</location>
+        </publisher>
+    </book>
+    <book id="4">
+        <title>To Kill a Mockingbird</title>
+        <authors>
+            <author>Harper Lee</author>
+        </authors>
+        <published_year>1960</published_year>
+        <available>true</available>
+        <genres>
+            <genre>Southern Gothic</genre>
+            <genre>Bildungsroman</genre>
+            <genre>Social Commentary</genre>
+        </genres>
+        <publisher>
+            <name>J.B. Lippincott &amp; Co.</name>
+            <location>Philadelphia, USA</location>
+        </publisher>
+    </book>
+    <book id="5">
+        <title>1984</title>
+        <authors>
+            <author>George Orwell</author>
+        </authors>
+        <published_year>1949</published_year>
+        <available>true</available>
+        <genres>
+            <genre>Dystopian Fiction</genre>
+            <genre>Political Fiction</genre>
+            <genre>Science Fiction</genre>
+        </genres>
+        <publisher>
+            <name>Secker &amp; Warburg</name>
+            <location>London, UK</location>
+        </publisher>
+    </book>
+    <book id="6">
+        <title>Jane Eyre</title>
+        <authors>
+            <author>Charlotte Brontë</author>
+        </authors>
+        <published_year>1847</published_year>
+        <available>true</available>
+        <genres>
+            <genre>Gothic Fiction</genre>
+            <genre>Romance</genre>
+            <genre>Bildungsroman</genre>
+        </genres>
+        <publisher>
+            <name>Penguin Classics</name>
+            <location>New York, USA</location>
+        </publisher>
+    </book>
+</books>

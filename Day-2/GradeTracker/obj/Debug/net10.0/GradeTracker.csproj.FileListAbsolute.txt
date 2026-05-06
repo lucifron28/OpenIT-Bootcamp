@@ -1,0 +1,14 @@
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\bin\Debug\net10.0\GradeTracker.exe
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\bin\Debug\net10.0\GradeTracker.deps.json
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\bin\Debug\net10.0\GradeTracker.runtimeconfig.json
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\bin\Debug\net10.0\GradeTracker.dll
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\bin\Debug\net10.0\GradeTracker.pdb
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.AssemblyInfoInputs.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.AssemblyInfo.cs
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.csproj.CoreCompileInputs.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.dll
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\refint\GradeTracker.dll
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.pdb
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\GradeTracker.genruntimeconfig.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\GradeTracker\obj\Debug\net10.0\ref\GradeTracker.dll

@@ -1,0 +1,13 @@
+GET /books
+GET /books/{id}
+GET /books/{id}/authors
+GET /books/{id}/authors/{id}
+POST /books/
+PUT /books/{id}
+PATCH /books/{id}
+DELETE /books/{id}
+
+?title=Pride%20%and%20Prejudice
+?author=Jane%20Austen
+?sort=rating&order=desc
+?page=1&size=10

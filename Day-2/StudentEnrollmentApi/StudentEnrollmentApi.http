@@ -1,0 +1,135 @@
+@StudentEnrollmentApi_HostAddress = http://localhost:5000
+@studentId = 1
+@missingStudentId = 999
+
+### Get all students
+GET {{StudentEnrollmentApi_HostAddress}}/api/student
+Accept: application/json
+
+### Get all students filtered by gender
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?gender=Male
+Accept: application/json
+
+### Get all students filtered by department
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?department=CCMS
+Accept: application/json
+
+### Get all students filtered by year
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?year=2
+Accept: application/json
+
+### Get all students filtered by old school
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?oldSchool=Hidden%20Leaf%20Academy
+Accept: application/json
+
+### Get all students filtered by enrolled status
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?enrolledStatus=Enrolled
+Accept: application/json
+
+### Get all students filtered by name (partial match)
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?name=ron
+Accept: application/json
+
+### Get all students with combined filters
+GET {{StudentEnrollmentApi_HostAddress}}/api/student?gender=Male&department=CCMS&year=2&oldSchool=Hidden%20Leaf%20Academy&enrolledStatus=Enrolled&name=ron
+Accept: application/json
+
+### Get student by id (existing)
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/{{studentId}}
+Accept: application/json
+
+### Get student by id (not found)
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/{{missingStudentId}}
+Accept: application/json
+
+### Search students by single filter
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/search?department=CCMS
+Accept: application/json
+
+### Search students with combined filters
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/search?gender=Male&year=2&name=ron
+Accept: application/json
+
+### Get student statistics
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/stats
+Accept: application/json
+
+### Get old schools
+GET {{StudentEnrollmentApi_HostAddress}}/api/student/oldschools
+Accept: application/json
+
+### Create student
+POST {{StudentEnrollmentApi_HostAddress}}/api/student
+Content-Type: application/json
+Accept: application/json
+
+{
+	"firstName": "Jane",
+	"lastName": "Doe",
+	"gender": "Female",
+	"year": 1,
+	"oldSchool": "STI College",
+	"enrolledStatus": "Enrolled",
+	"department": "CCJC",
+	"address": "Lucena City"
+}
+
+### Update student (existing)
+PUT {{StudentEnrollmentApi_HostAddress}}/api/student/{{studentId}}
+Content-Type: application/json
+
+{
+	"firstName": "Ronald",
+	"lastName": "Cada",
+	"gender": "Male",
+	"year": 3,
+	"oldSchool": "Hidden Leaf Academy",
+	"enrolledStatus": "Enrolled",
+	"department": "CCMS",
+	"address": "Lucena City"
+}
+
+### Update student (not found)
+PUT {{StudentEnrollmentApi_HostAddress}}/api/student/{{missingStudentId}}
+Content-Type: application/json
+
+{
+	"firstName": "Ghost",
+	"lastName": "Student",
+	"gender": "Male",
+	"year": 1,
+	"oldSchool": "MSEMSAT",
+	"enrolledStatus": "Enrolled",
+	"department": "CBA",
+	"address": "Nowhere"
+}
+
+### Patch student (partial update)
+PATCH {{StudentEnrollmentApi_HostAddress}}/api/student/{{studentId}}
+Content-Type: application/json
+
+{
+	"department": "CCJC",
+	"year": 4
+}
+
+### Patch student (not found)
+PATCH {{StudentEnrollmentApi_HostAddress}}/api/student/{{missingStudentId}}
+Content-Type: application/json
+
+{
+	"address": "Updated Address"
+}
+
+### Patch student (empty body)
+PATCH {{StudentEnrollmentApi_HostAddress}}/api/student/{{studentId}}
+Content-Type: application/json
+
+{
+}
+
+### Delete student (existing)
+DELETE {{StudentEnrollmentApi_HostAddress}}/api/student/{{studentId}}
+
+### Delete student (not found)
+DELETE {{StudentEnrollmentApi_HostAddress}}/api/student/{{missingStudentId}}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book id="1">
+    <title>Wuthering Heights</title>
+    <authors>
+        <author>Emily Brontë</author>
+    </authors>
+    <published_year>1847</published_year>
+    <available>true</available>
+    <genres>
+        <genre>Gothic Fiction</genre>
+        <genre>Romance</genre>
+        <genre>Revenge Tragedy</genre>
+        <genre>Victorian Realism</genre>
+    </genres>
+    <publisher>
+        <name>Penguin Classics</name>
+        <location>New York, USA</location>
+    </publisher>
+</book>
