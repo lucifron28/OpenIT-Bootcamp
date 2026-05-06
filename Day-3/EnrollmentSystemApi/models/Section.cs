@@ -1,8 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-class Section
+namespace EnrollmentSystemApi.models;
+public class Section
 {
     public int Id { get; set; }
     [Required]
-    public string Name { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+    public List<Student> Students { get; set; } = [];
+
 }

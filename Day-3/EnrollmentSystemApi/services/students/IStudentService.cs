@@ -1,11 +1,16 @@
 using EnrollmentSystemApi.DTOs.Students;
 
-interface IStudentService
+namespace EnrollmentSystemApi.Services.Students;
+
+public interface IStudentService
 {
-    Task<IEnumerable<StudentResponseDTO>> GetAllAsync();
-    Task<StudentResponseDTO?> GetByIdAsync(int id);
-    Task<StudentResponseDTO> CreateAsync(StudentCreateDTO studentCreateDTO);
-    Task<StudentResponseDTO?> UpdateAsync(int id, StudentUpdateDTO studentUpdateDTO);
-    Task<StudentResponseDTO?> PatchAsync(int id, StudentPatchDTO studentPatchDTO);
-    Task<bool> DeleteAsync(int id);
+    List<StudentResponseDTO> GetAllStudents();
+    StudentResponseDTO? GetStudentById(int id);
+    List<StudentResponseDTO>? GetStudentsBySectionCode(string sectionCode);
+    StudentResponseDTO? GetStudentBySectionCodeAndId(string sectionCode, int studentId);
+    List<StudentResponseDTO> SearchStudents(string? firstName, string? lastName, string? gender, int? age);
+    StudentResponseDTO Create(StudentCreateDTO studentCreateDTO);
+    bool Update(int id, StudentUpdateDTO studentUpdateDTO);
+    bool Patch(int id, StudentPatchDTO studentPatchDTO);
+    bool Delete(int id);
 }
