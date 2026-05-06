@@ -1,5 +1,6 @@
 using EnrollmentSystemApi.Services.Sections;
 using EnrollmentSystemApi.Services.Students;
+using EnrollmentSystemApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddSingleton<InMemoryEnrollmentStore>();
 builder.Services.AddSingleton<ISectionService, SectionService>();
 builder.Services.AddSingleton<IStudentService, StudentService>();
 

@@ -5,7 +5,7 @@ using EnrollmentSystemApi.Services.Students;
 namespace EnrollmentSystemApi.controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/students")]
 public class StudentController(IStudentService studentService) : ControllerBase
 {
 	[HttpGet]
@@ -15,17 +15,7 @@ public class StudentController(IStudentService studentService) : ControllerBase
 		[FromQuery] string? gender,
 		[FromQuery] int? age)
 	{
-		var hasSearchParams =
-			!string.IsNullOrWhiteSpace(firstName) ||
-			!string.IsNullOrWhiteSpace(lastName) ||
-			!string.IsNullOrWhiteSpace(gender) ||
-			age.HasValue;
-
-		var students = hasSearchParams
-			? studentService.SearchStudents(firstName, lastName, gender, age)
-			: studentService.GetAllStudents();
-
-		return Ok(students);
+		return Ok(studentService.GetStudents(firstName, lastName, gender, age));
 	}
 
 	[HttpGet("{id:int}")]
@@ -44,6 +34,11 @@ public class StudentController(IStudentService studentService) : ControllerBase
 	public ActionResult<StudentResponseDTO> Create([FromBody] StudentCreateDTO studentCreateDTO)
 	{
 		var createdStudent = studentService.Create(studentCreateDTO);
+		if (createdStudent is null)
+		{
+			return BadRequest("SectionId does not exist.");
+		}
+
 		return CreatedAtAction(nameof(GetById), new { id = createdStudent.Id }, createdStudent);
 	}
 

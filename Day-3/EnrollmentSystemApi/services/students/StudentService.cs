@@ -1,96 +1,77 @@
+using EnrollmentSystemApi.Data;
 using EnrollmentSystemApi.DTOs.Students;
 using EnrollmentSystemApi.models;
-using EnrollmentSystemApi.Services.Sections;
 
 namespace EnrollmentSystemApi.Services.Students;
 
-public class StudentService : IStudentService
+public class StudentService(InMemoryEnrollmentStore store) : IStudentService
 {
-    private readonly ISectionService _sectionService;
-    private readonly List<Student> _students =
-    [
-        new Student
-        {
-            Id = 1,
-            FirstName = "Ron",
-            LastName = "Cada",
-            Age = 20,
-            Gender = "Male",
-            SectionId = 1
-        }
-    ];
-
-    public StudentService(ISectionService sectionService)
-    {
-        _sectionService = sectionService;
-    }
-
     public List<StudentResponseDTO> GetAllStudents()
     {
-        return [.. _students.Select(MapToResponse)];
+        return [.. store.Students.Select(MapToResponse)];
     }
 
     public StudentResponseDTO? GetStudentById(int id)
     {
-        var student = _students.FirstOrDefault(s => s.Id == id);
+        var student = store.Students.FirstOrDefault(s => s.Id == id);
         return student is null ? null : MapToResponse(student);
     }
 
     public List<StudentResponseDTO>? GetStudentsBySectionCode(string sectionCode)
     {
-        var section = _sectionService.GetSectionByCode(sectionCode);
+        var section = FindSectionByCode(sectionCode);
         if (section is null)
         {
             return null;
         }
 
-        return [.. _students
+        return [.. store.Students
             .Where(student => student.SectionId == section.Id)
             .Select(MapToResponse)];
     }
 
     public StudentResponseDTO? GetStudentBySectionCodeAndId(string sectionCode, int studentId)
     {
-        var section = _sectionService.GetSectionByCode(sectionCode);
+        var section = FindSectionByCode(sectionCode);
         if (section is null)
         {
             return null;
         }
 
-        var student = _students.FirstOrDefault(s => s.SectionId == section.Id && s.Id == studentId);
+        var student = store.Students.FirstOrDefault(s => s.SectionId == section.Id && s.Id == studentId);
         return student is null ? null : MapToResponse(student);
     }
 
-    public List<StudentResponseDTO> SearchStudents(string? firstName, string? lastName, string? gender, int? age)
+    public List<StudentResponseDTO> GetStudents(string? firstName, string? lastName, string? gender, int? age)
     {
-        var result = _students.AsEnumerable();
-
-        if (!string.IsNullOrWhiteSpace(firstName))
-        {
-            result = result.Where(s => s.FirstName.Contains(firstName, StringComparison.OrdinalIgnoreCase));
-        }
-
-        if (!string.IsNullOrWhiteSpace(lastName))
-        {
-            result = result.Where(s => s.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase));
-        }
-
-        if (!string.IsNullOrWhiteSpace(gender))
-        {
-            result = result.Where(s => string.Equals(s.Gender, gender, StringComparison.OrdinalIgnoreCase));
-        }
-
-        if (age.HasValue)
-        {
-            result = result.Where(s => s.Age == age.Value);
-        }
-
-        return [.. result.Select(MapToResponse)];
+        return [.. ApplyStudentSearch(store.Students, firstName, lastName, gender, age).Select(MapToResponse)];
     }
 
-    public StudentResponseDTO Create(StudentCreateDTO studentCreateDTO)
+    public List<StudentResponseDTO>? GetStudentsBySectionCode(
+        string sectionCode,
+        string? firstName,
+        string? lastName,
+        string? gender,
+        int? age)
     {
-        var nextId = _students.Count == 0 ? 1 : _students.Max(s => s.Id) + 1;
+        var section = FindSectionByCode(sectionCode);
+        if (section is null)
+        {
+            return null;
+        }
+
+        var sectionStudents = store.Students.Where(student => student.SectionId == section.Id);
+        return [.. ApplyStudentSearch(sectionStudents, firstName, lastName, gender, age).Select(MapToResponse)];
+    }
+
+    public StudentResponseDTO? Create(StudentCreateDTO studentCreateDTO)
+    {
+        if (!SectionExists(studentCreateDTO.SectionId))
+        {
+            return null;
+        }
+
+        var nextId = store.Students.Count == 0 ? 1 : store.Students.Max(s => s.Id) + 1;
         var newStudent = new Student
         {
             Id = nextId,
@@ -101,13 +82,30 @@ public class StudentService : IStudentService
             SectionId = studentCreateDTO.SectionId
         };
 
-        _students.Add(newStudent);
+        store.Students.Add(newStudent);
         return MapToResponse(newStudent);
+    }
+
+    public StudentResponseDTO? CreateInSection(string sectionCode, StudentCreateDTO studentCreateDTO)
+    {
+        var section = FindSectionByCode(sectionCode);
+        if (section is null)
+        {
+            return null;
+        }
+
+        studentCreateDTO.SectionId = section.Id;
+        return Create(studentCreateDTO);
     }
 
     public bool Update(int id, StudentUpdateDTO studentUpdateDTO)
     {
-        var student = _students.FirstOrDefault(s => s.Id == id);
+        if (!SectionExists(studentUpdateDTO.SectionId))
+        {
+            return false;
+        }
+
+        var student = store.Students.FirstOrDefault(s => s.Id == id);
         if (student is null)
         {
             return false;
@@ -121,9 +119,30 @@ public class StudentService : IStudentService
         return true;
     }
 
+    public bool UpdateInSection(string sectionCode, int studentId, StudentUpdateDTO studentUpdateDTO)
+    {
+        var section = FindSectionByCode(sectionCode);
+        var student = section is null
+            ? null
+            : store.Students.FirstOrDefault(s => s.SectionId == section.Id && s.Id == studentId);
+
+        if (section is null || student is null)
+        {
+            return false;
+        }
+
+        studentUpdateDTO.SectionId = section.Id;
+        return Update(studentId, studentUpdateDTO);
+    }
+
     public bool Patch(int id, StudentPatchDTO studentPatchDTO)
     {
-        var student = _students.FirstOrDefault(s => s.Id == id);
+        if (studentPatchDTO.SectionId.HasValue && !SectionExists(studentPatchDTO.SectionId.Value))
+        {
+            return false;
+        }
+
+        var student = store.Students.FirstOrDefault(s => s.Id == id);
         if (student is null)
         {
             return false;
@@ -157,21 +176,95 @@ public class StudentService : IStudentService
         return true;
     }
 
+    public bool PatchInSection(string sectionCode, int studentId, StudentPatchDTO studentPatchDTO)
+    {
+        var section = FindSectionByCode(sectionCode);
+        var student = section is null
+            ? null
+            : store.Students.FirstOrDefault(s => s.SectionId == section.Id && s.Id == studentId);
+
+        if (section is null || student is null)
+        {
+            return false;
+        }
+
+        studentPatchDTO.SectionId = section.Id;
+        return Patch(studentId, studentPatchDTO);
+    }
+
     public bool Delete(int id)
     {
-        var student = _students.FirstOrDefault(s => s.Id == id);
+        var student = store.Students.FirstOrDefault(s => s.Id == id);
         if (student is null)
         {
             return false;
         }
 
-        _students.Remove(student);
+        store.Students.Remove(student);
         return true;
+    }
+
+    public bool DeleteInSection(string sectionCode, int studentId)
+    {
+        var section = FindSectionByCode(sectionCode);
+        var student = section is null
+            ? null
+            : store.Students.FirstOrDefault(s => s.SectionId == section.Id && s.Id == studentId);
+
+        if (student is null)
+        {
+            return false;
+        }
+
+        store.Students.Remove(student);
+        return true;
+    }
+
+    private static IEnumerable<Student> ApplyStudentSearch(
+        IEnumerable<Student> students,
+        string? firstName,
+        string? lastName,
+        string? gender,
+        int? age)
+    {
+        var result = students;
+
+        if (!string.IsNullOrWhiteSpace(firstName))
+        {
+            result = result.Where(s => s.FirstName.Contains(firstName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(lastName))
+        {
+            result = result.Where(s => s.LastName.Contains(lastName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(gender))
+        {
+            result = result.Where(s => string.Equals(s.Gender, gender, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (age.HasValue)
+        {
+            result = result.Where(s => s.Age == age.Value);
+        }
+
+        return result;
+    }
+
+    private bool SectionExists(int sectionId)
+    {
+        return store.Sections.Any(section => section.Id == sectionId);
+    }
+
+    private Section? FindSectionByCode(string sectionCode)
+    {
+        return store.Sections.FirstOrDefault(s => string.Equals(s.Code, sectionCode, StringComparison.OrdinalIgnoreCase));
     }
 
     private StudentResponseDTO MapToResponse(Student student)
     {
-        var sectionCode = _sectionService.GetSectionById(student.SectionId)?.Code ?? string.Empty;
+        var sectionCode = store.Sections.FirstOrDefault(section => section.Id == student.SectionId)?.Code ?? string.Empty;
 
         return new StudentResponseDTO
         {
