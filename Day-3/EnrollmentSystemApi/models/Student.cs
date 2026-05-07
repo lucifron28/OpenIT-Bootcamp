@@ -14,4 +14,5 @@ public class Student
     public string Gender { get; set; } = string.Empty;
     [Required]
     public int SectionId { get; set; }
+    public int? Grade { get; set; }
 }

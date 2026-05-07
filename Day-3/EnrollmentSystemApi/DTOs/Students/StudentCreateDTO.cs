@@ -7,4 +7,5 @@ public class StudentCreateDTO
     public int Age { get; set; }
     public string Gender { get; set; } = string.Empty;
     public int SectionId { get; set; }
+    public int? Grade { get; set; }
 }

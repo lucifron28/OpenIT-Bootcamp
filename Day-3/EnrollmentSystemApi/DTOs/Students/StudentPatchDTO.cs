@@ -7,4 +7,5 @@ public class StudentPatchDTO
     public int? Age { get; set; }
     public string? Gender { get; set; }
     public int? SectionId { get; set; }
+    public int? Grade { get; set ; }
 }

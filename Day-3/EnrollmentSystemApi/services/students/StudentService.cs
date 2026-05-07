@@ -79,7 +79,8 @@ public class StudentService(InMemoryEnrollmentStore store) : IStudentService
             LastName = studentCreateDTO.LastName,
             Age = studentCreateDTO.Age,
             Gender = studentCreateDTO.Gender,
-            SectionId = studentCreateDTO.SectionId
+            SectionId = studentCreateDTO.SectionId,
+            Grade = studentCreateDTO.Grade
         };
 
         store.Students.Add(newStudent);
@@ -116,6 +117,7 @@ public class StudentService(InMemoryEnrollmentStore store) : IStudentService
         student.Age = studentUpdateDTO.Age;
         student.Gender = studentUpdateDTO.Gender;
         student.SectionId = studentUpdateDTO.SectionId;
+        student.Grade = studentUpdateDTO.Grade;
         return true;
     }
 
@@ -172,7 +174,10 @@ public class StudentService(InMemoryEnrollmentStore store) : IStudentService
         {
             student.SectionId = studentPatchDTO.SectionId.Value;
         }
-
+        if (studentPatchDTO.Grade.HasValue)
+        {
+            student.Grade = studentPatchDTO.Grade.Value;
+        }
         return true;
     }
 
@@ -273,7 +278,8 @@ public class StudentService(InMemoryEnrollmentStore store) : IStudentService
             LastName = student.LastName,
             Age = student.Age,
             Gender = student.Gender,
-            SectionCode = sectionCode
+            SectionCode = sectionCode,
+            Grade = student.Grade
         };
     }
 }

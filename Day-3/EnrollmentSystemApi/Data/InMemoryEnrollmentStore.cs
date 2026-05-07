@@ -22,7 +22,8 @@ public class InMemoryEnrollmentStore
             LastName = "Cada",
             Age = 20,
             Gender = "Male",
-            SectionId = 1
+            SectionId = 1,
+            Grade = 90
         }
     ];
 }

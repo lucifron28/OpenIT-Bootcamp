@@ -9,3 +9,14 @@ GET {{EnrollmentSystemApi_HostAddress}}/api/sections/M2022/students/1
 Accept: application/json
 
 ###
+POST {{EnrollmentSystemApi_HostAddress}}/api/sections/M2022/students
+Content-Type: application/json
+
+{
+  "firstName": "Sasuke",
+  "lastName": "Uchiha",
+  "age": 25,
+  "gender": "Male",
+  "sectionCode": "M200"
+}
+ 

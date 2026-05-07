@@ -1,0 +1,9 @@
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.csproj.AssemblyReference.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.AssemblyInfoInputs.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.AssemblyInfo.cs
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.csproj.CoreCompileInputs.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Cada-OpenIT-Bootcamp\Day-2\LibraryAPI\obj\Debug\net10.0\LibraryAPI.sourcelink.json

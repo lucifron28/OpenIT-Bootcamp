@@ -5,7 +5,7 @@ namespace EnrollmentSystemApi.Services.Students;
 public interface IStudentService
 {
     List<StudentResponseDTO> GetAllStudents();
-    List<StudentResponseDTO> GetStudents(string? firstName, string? lastName, string? gender, int? age);
+    //List<StudentResponseDTO> GetStudents(string? firstName, string? lastName, string? gender, int? age, int? grade);
     StudentResponseDTO? GetStudentById(int id);
     List<StudentResponseDTO>? GetStudentsBySectionCode(string sectionCode);
     List<StudentResponseDTO>? GetStudentsBySectionCode(string sectionCode, string? firstName, string? lastName, string? gender, int? age);

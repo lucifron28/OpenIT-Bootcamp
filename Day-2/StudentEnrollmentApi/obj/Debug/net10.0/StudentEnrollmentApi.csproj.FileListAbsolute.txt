@@ -35,3 +35,4 @@ C:\Cada-OpenIT-Bootcamp\Day-2\StudentEnrollmentApi\obj\Debug\net10.0\refint\Stud
 C:\Cada-OpenIT-Bootcamp\Day-2\StudentEnrollmentApi\obj\Debug\net10.0\StudentEnrollmentApi.pdb
 C:\Cada-OpenIT-Bootcamp\Day-2\StudentEnrollmentApi\obj\Debug\net10.0\StudentEnrollmentApi.genruntimeconfig.cache
 C:\Cada-OpenIT-Bootcamp\Day-2\StudentEnrollmentApi\obj\Debug\net10.0\ref\StudentEnrollmentApi.dll
+C:\Cada-OpenIT-Bootcamp\Day-2\StudentEnrollmentApi\obj\Debug\net10.0\StudentEnrollmentApi.sourcelink.json

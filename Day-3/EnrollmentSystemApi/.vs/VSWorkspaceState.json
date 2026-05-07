@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Data",
+    "\\DTOs",
+    "\\DTOs\\Students",
+    "\\middlewares",
+    "\\models",
+    "\\services",
+    "\\services\\students"
+  ],
+  "SelectedNode": "\\EnrollmentSystemApi.http",
+  "PreviewInSolutionExplorer": false
+}

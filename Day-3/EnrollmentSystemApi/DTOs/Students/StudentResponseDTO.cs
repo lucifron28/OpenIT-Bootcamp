@@ -8,5 +8,6 @@ public class StudentResponseDTO
     public int Age { get; set; }
     public string Gender { get; set; } = string.Empty;
     public string SectionCode { get; set; } = string.Empty;
+    public int? Grade { get; set; }
 }
 

@@ -66,3 +66,4 @@ C:\Users\Ron\Documents\OpenIT-Bootcamp\Day-3\EnrollmentSystemApi\obj\Debug\net10
 C:\Users\Ron\Documents\OpenIT-Bootcamp\Day-3\EnrollmentSystemApi\obj\Debug\net10.0\EnrollmentSystemApi.pdb
 C:\Users\Ron\Documents\OpenIT-Bootcamp\Day-3\EnrollmentSystemApi\obj\Debug\net10.0\EnrollmentSystemApi.genruntimeconfig.cache
 C:\Users\Ron\Documents\OpenIT-Bootcamp\Day-3\EnrollmentSystemApi\obj\Debug\net10.0\ref\EnrollmentSystemApi.dll
+C:\Cada-OpenIT-Bootcamp\Day-3\EnrollmentSystemApi\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
