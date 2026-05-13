@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Library App</title>
+</head>
+
+<body>
+    <header>
+        <h1>LibraryApp</h1>
+        <nav>
+            <a href="">Books</a>
+            <a href="">Add Book</a>
+            <a href="">Search</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="book-catalog">
+            <h2>Book Catalog</h2>
+            <div class="filters">
+                <input type="text" placeholder="Search books..." id="searchInput">
+                <select id="genres-dropdown">
+                    <option value="">All Genres</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="programming">Programming</option>
+                    <option value="history">History</option>
+                </select>
+            </div>
+        </section>
+        <section class="book-cards">
+            <div class="book-card">
+                <div class="line"></div>
+                <div class="book-content">
+                    <h5 class="genre">Programming</h5>
+                    <h3>Clean Code</h3>
+                    <p class="author">by Robert Martin</p>
+                    <p class="year">2008</p>
+                    <div class="status">
+                        <div class="status-circle-available"></div>
+                        <span class="status-text-available">Available</span>
+                    </div>
+                    <div class="buttons">
+                        <button class="lend-btn">Lend</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="line"></div>
+                <div class="book-content">
+
+                    <h5 class="genre">Fiction</h5>
+                    <h3>Dune</h3>
+                    <p class="author">by Frank Herbert</p>
+                    <p class="year">1965</p>
+                    <div class="status">
+                        <div class="status-circle-available"></div>
+                        <span class="status-text-available">Available</span>
+                    </div>
+                    <div class="buttons">
+                        <button class="lend-btn">Lend</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <div class="line"></div>
+                <div class="book-content">
+                    <h5 class="genre">History</h5>
+                    <h3>Sapiens: A Brief History of Humankind</h3>
+                    <p class="author">by Yuval Noah Harari</p>
+                    <p class="year">2011</p>
+                    <div class="status">
+                        <div class="status-circle-unavailable"></div>
+                        <span class="status-text-unavailable">Unavailable</span>
+                    </div>
+                    <div class="buttons">
+                        <button class="lend-btn">Lend</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

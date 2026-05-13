@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EnrollmentSystemApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3bc18e070a9afae33d9eedbe8e5706ad3c5f5c1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75274c0025f778ba402cd1cd23147c74cac9d55b")]
 [assembly: System.Reflection.AssemblyProductAttribute("EnrollmentSystemApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EnrollmentSystemApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

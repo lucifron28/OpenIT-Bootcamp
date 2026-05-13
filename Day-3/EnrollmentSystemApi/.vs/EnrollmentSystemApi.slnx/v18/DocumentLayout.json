@@ -62,8 +62,7 @@
               "RelativeToolTip": "EnrollmentSystemApi.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-07T06:32:13.909Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T06:32:13.909Z"
             },
             {
               "$type": "Document",
@@ -75,8 +74,7 @@
               "RelativeToolTip": "middlewares\\RandomGradeGeneratorMiddlewareExtension.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T06:22:30.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T06:22:30.822Z"
             },
             {
               "$type": "Document",
@@ -84,9 +82,9 @@
               "Title": "EnrollmentSystemApi.http",
               "DocumentMoniker": "C:\\Cada-OpenIT-Bootcamp\\Day-3\\EnrollmentSystemApi\\EnrollmentSystemApi.http",
               "RelativeDocumentMoniker": "EnrollmentSystemApi.http",
-              "ToolTip": "C:\\Cada-OpenIT-Bootcamp\\Day-3\\EnrollmentSystemApi\\EnrollmentSystemApi.http",
-              "RelativeToolTip": "EnrollmentSystemApi.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "ToolTip": "C:\\Cada-OpenIT-Bootcamp\\Day-3\\EnrollmentSystemApi\\EnrollmentSystemApi.http*",
+              "RelativeToolTip": "EnrollmentSystemApi.http*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2026-05-07T06:16:41.185Z",
               "EditorCaption": ""
@@ -114,8 +112,7 @@
               "RelativeToolTip": "middlewares\\RandomGradeGeneratorMiddleware.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T05:17:27.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T05:17:27.282Z"
             },
             {
               "$type": "Document",
@@ -127,8 +124,7 @@
               "RelativeToolTip": "DTOs\\Students\\StudentResponseDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T06:16:10.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T06:16:10.907Z"
             },
             {
               "$type": "Document",
@@ -140,8 +136,7 @@
               "RelativeToolTip": "services\\students\\StudentService.cs",
               "ViewState": "AgIAAAUBAAAAAAAAAAAvwBkBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T05:19:37.213Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T05:19:37.213Z"
             },
             {
               "$type": "Document",
@@ -153,8 +148,7 @@
               "RelativeToolTip": "DTOs\\Students\\StudentUpdateDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T06:20:24.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T06:20:24.684Z"
             },
             {
               "$type": "Document",
@@ -166,8 +160,7 @@
               "RelativeToolTip": "models\\Student.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T05:35:35.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T05:35:35.011Z"
             },
             {
               "$type": "Document",
@@ -179,8 +172,7 @@
               "RelativeToolTip": "services\\students\\IStudentService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T05:50:08.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T05:50:08.516Z"
             }
           ]
         }
