@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Enrollment System</title>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-title">Enrollment System</div>
+        <div class="topbar-meta">Open IT University - AY 2025-2026</div>
+    </header>
+
+    <main class="page">
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-bar" id="total-students"></span>
+                <span class="stat-label">TOTAL STUDENTS</span>
+            </div>
+            <div class="stat">
+                <span class="stat-bar" id="enrolled-students"></span>
+                <span class="stat-label">ENROLLED</span>
+            </div>
+            <div class="stat">
+                <span class="stat-bar" id="total-programs"></span>
+                <span class="stat-label">PROGRAMS</span>
+            </div>
+            <div class="stat">
+                <span class="stat-bar" id="avg-grade"></span>
+                <span class="stat-label">AVG GRADE</span>
+            </div>
+        </section>
+
+        <section class="filters">
+            <div class="search">
+                <span class="search-icon">&#128269;</span>
+                <input id="searchInput" type="text" placeholder="Search by name...">
+            </div>
+            <div class="filter">
+                <select id="programFilter">
+                    <option value="">All Programs</option>
+                </select>
+            </div>
+            <div class="filter">
+                <select id="yearFilter">
+                    <option value="">All Years</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="table">
+            <div class="table-head">
+                <span>NAME</span>
+                <span>YEAR</span>
+                <span>GENDER</span>
+                <span>PROGRAM</span>
+                <span>SECTION</span>
+                <span>AVG GRADE</span>
+                <span>STATUS</span>
+            </div>
+            <div class="table-body" id="tableBody">
+                <div class="table-row empty-row">No data loaded.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bottombar">
+        <span>&copy; 2026 <strong>Open IT University</strong> - Built on Open IT Summer Bootcamp</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
