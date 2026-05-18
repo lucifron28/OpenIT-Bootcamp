@@ -10,6 +10,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<EnrollmentContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<ProgramsService>();
+builder.Services.AddScoped<StudentsService>();
+builder.Services.AddScoped<SectionsService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -38,7 +40,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<EnrollmentContext>();
-    SeedData.EnsureSeeded(db);
+    // SeedData.EnsureSeeded(db);
 }
 
 app.Run();

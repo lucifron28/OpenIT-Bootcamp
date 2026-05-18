@@ -6,34 +6,7 @@ namespace StudentEnrollmentApi.Services
     {
         private readonly EnrollmentContext _context = context;
 
-        public List<Programs> GetAll() => _context.Programs.ToList();
-
-        public List<StudentRow> GetStudentRows()
-        {
-            return (from student in _context.Student
-                    join studentSection in _context.StudentSection
-                        on student.StudentId equals studentSection.StudentId into studentSections
-                    from studentSection in studentSections.DefaultIfEmpty()
-                    join section in _context.Section
-                        on studentSection.SectionId equals section.Id into sections
-                    from section in sections.DefaultIfEmpty()
-                    join program in _context.Programs
-                        on section.ProgramId equals program.Id into programs
-                    from program in programs.DefaultIfEmpty()
-                    join grade in _context.StudentGrades
-                        on student.StudentId equals grade.StudentId into grades
-                    from grade in grades.DefaultIfEmpty()
-                    select new StudentRow
-                    {
-                        Name = student.FirstName + " " + student.LastName,
-                        Year = student.Year,
-                        Gender = student.Gender,
-                        Program = program != null ? program.Name : string.Empty,
-                        Section = section != null ? section.Code : string.Empty,
-                        AvgGrade = grade != null ? grade.Grade : null,
-                        Status = student.IsEnrolled ? "Enrolled" : "Not Enrolled"
-                    }).ToList();
-        }
+        public List<Programs> GetAll() => [.. _context.Programs];
 
         public Programs GetById(int id)
         {
@@ -82,6 +55,19 @@ namespace StudentEnrollmentApi.Services
             return sections;
         }
 
+        public Section GetSectionByCode(int programId, string sectionCode)
+        {
+            var program = _context.Programs.Find(programId);
+            if (program == null)
+                throw new KeyNotFoundException($"Program with id {programId} not found");
+
+            var section = _context.Section.FirstOrDefault(s => s.ProgramId == programId && s.Code == sectionCode);
+            if (section == null)
+                throw new KeyNotFoundException($"Section {sectionCode} not found in program {programId}");
+
+            return section;
+        }
+
         public Section CreateSection(int programId, Section section)
         {
             var program = _context.Programs.Find(programId);
@@ -89,6 +75,7 @@ namespace StudentEnrollmentApi.Services
                 throw new KeyNotFoundException($"Program with id {programId} not found");
 
             section.ProgramId = programId;
+            section.Programs = program;
             _context.Section.Add(section);
             _context.SaveChanges();
             return section;
@@ -106,6 +93,8 @@ namespace StudentEnrollmentApi.Services
 
             existing.Code = section.Code;
             existing.Year = section.Year;
+            existing.ProgramId = programId;
+            existing.Programs = program;
             _context.SaveChanges();
         }
 

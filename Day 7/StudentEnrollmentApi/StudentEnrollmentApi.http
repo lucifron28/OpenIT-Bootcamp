@@ -1,4 +1,4 @@
-@HostAddress = https://localhost:7116
+@HostAddress = http://localhost:5001
 @ContentType = application/json
 @ProgramId = 1
 @SectionCode = CS101
@@ -7,7 +7,7 @@
 ### ==================== PROGRAMS ====================
 
 ### GET all programs
-GET {{HostAddress}}/api/programs/
+GET {{HostAddress}}/api/programs
 Accept: {{ContentType}}
 
 ### GET program by id
@@ -15,7 +15,7 @@ GET {{HostAddress}}/api/programs/{{ProgramId}}
 Accept: {{ContentType}}
 
 ### POST - Create program
-POST {{HostAddress}}/api/programs/
+POST {{HostAddress}}/api/programs
 Content-Type: {{ContentType}}
 
 {
@@ -31,7 +31,7 @@ Content-Type: {{ContentType}}
 }
 
 ### DELETE program by id
-DELETE {{HostAddress}}/api/programs/2
+DELETE {{HostAddress}}/api/programs/{{ProgramId}}
 Accept: {{ContentType}}
 
 ### ==================== SECTIONS ====================
@@ -40,13 +40,16 @@ Accept: {{ContentType}}
 GET {{HostAddress}}/api/programs/{{ProgramId}}/sections
 Accept: {{ContentType}}
 
+### GET all sections
+GET {{HostAddress}}/api/sections
+Accept: {{ContentType}}
+
 ### POST - Create section under program
-POST {{HostAddress}}/api/programs/1/sections
+POST {{HostAddress}}/api/programs/{{ProgramId}}/sections
 Content-Type: {{ContentType}}
 
 {
 	"code": "CS101",
-	"name": "Introduction to Computer Science",
 	"year": 1
 }
 
@@ -63,10 +66,22 @@ Content-Type: {{ContentType}}
 DELETE {{HostAddress}}/api/programs/{{ProgramId}}/sections/{{SectionCode}}
 Accept: {{ContentType}}
 
+### ==================== STUDENT ROWS ====================
+
+### GET students table rows
+GET {{HostAddress}}/api/programs/students
+Accept: {{ContentType}}
+
 ### ==================== STUDENT LOOKUP ====================
 
 ### GET student by program, section code, and student id
 GET {{HostAddress}}/api/programs/{{ProgramId}}/sections/{{SectionCode}}/student/{{StudentId}}
+Accept: {{ContentType}}
+
+### ==================== STUDENTS ====================
+
+### GET all students
+GET {{HostAddress}}/api/students
 Accept: {{ContentType}}
 
 

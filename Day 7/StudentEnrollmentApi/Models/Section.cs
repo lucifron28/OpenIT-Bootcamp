@@ -15,5 +15,5 @@ public class Section
     public int Year { get; set; }
     [Required]
     public int ProgramId { get; set; }
-    public Programs Programs { get; set; } = new();
+    public Programs? Programs { get; set; }
 }

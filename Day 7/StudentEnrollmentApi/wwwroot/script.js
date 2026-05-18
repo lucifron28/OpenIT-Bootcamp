@@ -10,7 +10,7 @@ const avgGradeBar = document.getElementById("avg-grade");
 const API_BASE = window.location.origin.includes("5500")
 	? "http://localhost:5001"
 	: window.location.origin;
-const STUDENTS_URL = `${API_BASE}/api/programs/students`;
+const STUDENTS_URL = `${API_BASE}/api/students`;
 
 let students = [];
 

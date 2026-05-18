@@ -23,19 +23,6 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
-        [HttpGet("students")]
-        public ActionResult<IEnumerable<StudentRow>> GetStudents()
-        {
-            try
-            {
-                return Ok(_service.GetStudentRows());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpGet("{id:int}")]
         public ActionResult<Programs> GetById(int id)
         {
@@ -120,13 +107,30 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [HttpGet("{programId:int}/sections/{sectionCode}")]
+        public ActionResult<Section> GetSectionByCode(int programId, string sectionCode)
+        {
+            try
+            {
+                return Ok(_service.GetSectionByCode(programId, sectionCode));
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("{programId:int}/sections")]
         public ActionResult<Section> CreateSection(int programId, Section section)
         {
             try
             {
                 var createdSection = _service.CreateSection(programId, section);
-                return CreatedAtAction(nameof(GetSectionsByProgram), new { programId }, createdSection);
+                return CreatedAtAction(nameof(GetSectionByCode), new { programId, sectionCode = createdSection.Code }, createdSection);
             }
             catch (KeyNotFoundException)
             {

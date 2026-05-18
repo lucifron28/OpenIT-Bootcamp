@@ -2,6 +2,7 @@ namespace StudentEnrollmentApi.Models;
 
 public class StudentRow
 {
+    public int StudentId { get; set; }
     public string Name { get; set; } = string.Empty;
     public int Year { get; set; }
     public string Gender { get; set; } = string.Empty;
