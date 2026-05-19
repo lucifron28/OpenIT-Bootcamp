@@ -1,31 +1,24 @@
 function StatsPanel({ stats }) {
-  const safeStats = stats ?? {
-    total: 0,
-    enrolled: 0,
-    programs: 0,
-    avgGrade: '-',
-  }
-
   const items = [
     {
       label: 'TOTAL STUDENTS',
-      value: safeStats.total,
-      tooltip: `Total students: ${safeStats.total}`,
+      value: stats.total,
+      tooltip: `Total students: ${stats.total}`,
     },
     {
       label: 'ENROLLED',
-      value: safeStats.enrolled,
-      tooltip: `Enrolled: ${safeStats.enrolled}`,
+      value: stats.enrolled,
+      tooltip: `Enrolled: ${stats.enrolled}`,
     },
     {
       label: 'PROGRAMS',
-      value: safeStats.programs,
-      tooltip: `Programs: ${safeStats.programs}`,
+      value: stats.programs,
+      tooltip: `Programs: ${stats.programs}`,
     },
     {
       label: 'AVG GRADE',
-      value: safeStats.avgGrade,
-      tooltip: `Avg grade: ${safeStats.avgGrade}`,
+      value: stats.avgGrade,
+      tooltip: `Avg grade: ${stats.avgGrade}`,
     },
   ]
 
@@ -33,12 +26,7 @@ function StatsPanel({ stats }) {
     <section className="stats">
       {items.map((item) => (
         <div className="stat" key={item.label}>
-          <span
-            className="stat-bar"
-            title={item.tooltip}
-            aria-label={item.tooltip}
-          />
-          <strong className="stat-value">{item.value}</strong>
+          {item.value ?  <strong className="stat-value">{item.value}</strong> : <span className="stat-bar" title={item.tooltip} aria-label={item.tooltip} />} 
           <span className="stat-label">{item.label}</span>
         </div>
       ))}
