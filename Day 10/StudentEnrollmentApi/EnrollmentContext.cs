@@ -14,6 +14,6 @@ public class EnrollmentContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=enrollmentapi;Username=postgres;Password=ccms");
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=enrollmentapi;Username=postgres;Password=lucifron");
     }
 }

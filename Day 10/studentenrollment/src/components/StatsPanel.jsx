@@ -38,6 +38,7 @@ function StatsPanel({ stats }) {
             title={item.tooltip}
             aria-label={item.tooltip}
           />
+          <strong className="stat-value">{item.value}</strong>
           <span className="stat-label">{item.label}</span>
         </div>
       ))}

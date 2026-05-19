@@ -42,8 +42,8 @@ function App() {
   const programs =
     new Set(filteredStudents.map((student) => student.program).filter(Boolean)).size
   const grades = filteredStudents
-    .map((student) => student.avgGrade)
-    .filter((grade) => typeof grade === 'number')
+    .map((student) => Number(student.avgGrade))
+    .filter((grade) => Number.isFinite(grade))
   const avgGrade = grades.length
     ? Math.round(grades.reduce((sum, grade) => sum + grade, 0) / grades.length)
     : '-'
