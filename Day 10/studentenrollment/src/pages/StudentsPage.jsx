@@ -1,14 +1,5 @@
-import { useEffect, useState } from 'react'
-import {
-  createStudent,
-  deleteStudent,
-  getPrograms,
-  getSections,
-  getStudentById,
-  getStudents,
-  setStudentSection,
-  updateStudent,
-} from '../services/Services'
+import { useState } from 'react'
+import { useEnrollmentData } from '../hooks/useEnrollmentData'
 
 const emptyForm = {
   firstName: '',
@@ -20,71 +11,20 @@ const emptyForm = {
   isEnrolled: true,
 }
 
-const normalizeStudentRow = (student) => ({
-  studentId:
-    student.studentId ?? student.StudentId ?? student.id ?? student.Id ?? '',
-  name: student.name ?? student.Name ?? '',
-  year: student.year ?? student.Year ?? '',
-  gender: student.gender ?? student.Gender ?? '',
-  program: student.program ?? student.Program ?? '',
-  section: student.section ?? student.Section ?? '',
-  status: student.status ?? student.Status ?? '',
-})
-
-const normalizeStudentForm = (student) => ({
-  firstName: student.firstName ?? student.FirstName ?? '',
-  lastName: student.lastName ?? student.LastName ?? '',
-  year: student.year ?? student.Year ?? '',
-  gender: student.gender ?? student.Gender ?? '',
-  isEnrolled: student.isEnrolled ?? student.IsEnrolled ?? true,
-})
-
-const normalizeProgram = (program) => ({
-  id: Number(program.id ?? program.Id ?? 0),
-  name: program.name ?? program.Name ?? '',
-})
-
-const normalizeSection = (section) => ({
-  id: Number(section.id ?? section.Id ?? 0),
-  code: section.code ?? section.Code ?? '',
-  programId: Number(section.programId ?? section.ProgramId ?? 0),
-})
-
 function StudentsPage() {
-  const [students, setStudents] = useState([])
-  const [programs, setPrograms] = useState([])
-  const [sections, setSections] = useState([])
-  const [status, setStatus] = useState({ loading: true, error: '' })
+  const {
+    students,
+    programs,
+    sections,
+    status,
+    getStudentDetails,
+    createStudentRecord,
+    updateStudentRecord,
+    deleteStudentRecord,
+  } = useEnrollmentData()
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editingId, setEditingId] = useState(null)
-
-  const loadData = async () => {
-    setStatus({ loading: true, error: '' })
-    try {
-      const [studentsData, programsData, sectionsData] = await Promise.all([
-        getStudents(),
-        getPrograms(),
-        getSections(),
-      ])
-      setStudents(studentsData.map(normalizeStudentRow))
-      setPrograms(programsData.map(normalizeProgram))
-      setSections(sectionsData.map(normalizeSection))
-      setStatus({ loading: false, error: '' })
-    } catch (error) {
-      setStudents([])
-      setPrograms([])
-      setSections([])
-      setStatus({
-        loading: false,
-        error: error?.message || 'Failed to load students',
-      })
-    }
-  }
-
-  useEffect(() => {
-    loadData()
-  }, [])
 
   const resetForm = () => {
     setForm(emptyForm)
@@ -95,7 +35,7 @@ function StudentsPage() {
   const handleEdit = async (student) => {
     setFormStatus({ submitting: true, error: '' })
     try {
-      const data = await getStudentById(student.studentId)
+      const details = await getStudentDetails(student.studentId)
       const programId = programs.find((program) => program.name === student.program)?.id ?? ''
       const sectionId = programId
         ? sections.find(
@@ -104,7 +44,11 @@ function StudentsPage() {
         : ''
 
       setForm({
-        ...normalizeStudentForm(data),
+        firstName: details.firstName,
+        lastName: details.lastName,
+        year: details.year,
+        gender: details.gender,
+        isEnrolled: details.isEnrolled,
         programId: programId ? String(programId) : '',
         sectionId: sectionId ? String(sectionId) : '',
       })
@@ -154,20 +98,11 @@ function StudentsPage() {
     }
 
     try {
-      let studentId = editingId
       if (editingId) {
-        await updateStudent(editingId, payload)
+        await updateStudentRecord(editingId, payload, sectionIdValue)
       } else {
-        const created = await createStudent(payload)
-        studentId = created?.studentId ?? created?.StudentId
+        await createStudentRecord(payload, sectionIdValue)
       }
-
-      if (!studentId) {
-        throw new Error('Failed to save student')
-      }
-
-      await setStudentSection(studentId, sectionIdValue)
-      await loadData()
       resetForm()
     } catch (error) {
       setFormStatus({
@@ -185,8 +120,7 @@ function StudentsPage() {
 
     setFormStatus({ submitting: true, error: '' })
     try {
-      await deleteStudent(studentId)
-      await loadData()
+      await deleteStudentRecord(studentId)
       if (editingId === studentId) {
         resetForm()
       }

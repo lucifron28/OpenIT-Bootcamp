@@ -1,65 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './styles/App.css'
 import BottomBar from './components/BottomBar'
 import FiltersBar from './components/FiltersBar'
 import StatsPanel from './components/StatsPanel'
 import StudentsTable from './components/StudentsTable'
 import TopBar from './components/TopBar'
-import { getStudents } from './services/Services'
+import { useEnrollmentData } from './hooks/useEnrollmentData'
 import ProgramsPage from './pages/ProgramsPage'
 import SectionsPage from './pages/SectionsPage'
 import StudentsPage from './pages/StudentsPage'
 
-const normalizeStudent = (student) => ({
-  name: student.name ?? student.Name ?? '',
-  year: student.year ?? student.Year ?? '',
-  gender: student.gender ?? student.Gender ?? '',
-  program: student.program ?? student.Program ?? '',
-  section: student.section ?? student.Section ?? '',
-  avgGrade: student.avgGrade ?? student.AvgGrade ?? null,
-  status: student.status ?? student.Status ?? '',
-})
-
 function App() {
-  const [students, setStudents] = useState([])
+  const { students, status } = useEnrollmentData()
   const [searchText, setSearchText] = useState('')
   const [programFilter, setProgramFilter] = useState('')
   const [yearFilter, setYearFilter] = useState('')
-  const [status, setStatus] = useState({ loading: true, error: '' })
   const [activePage, setActivePage] = useState('overview')
-
-  useEffect(() => {
-    let isActive = true
-
-    const loadStudents = async () => {
-      setStatus({ loading: true, error: '' })
-      try {
-        const data = await getStudents()
-        if (!isActive) {
-          return
-        }
-
-        setStudents(data.map(normalizeStudent))
-        setStatus({ loading: false, error: '' })
-      } catch (error) {
-        if (!isActive) {
-          return
-        }
-
-        setStudents([])
-        setStatus({
-          loading: false,
-          error: error?.message || 'Failed to load students',
-        })
-      }
-    }
-
-    loadStudents()
-
-    return () => {
-      isActive = false
-    }
-  }, [])
 
   const programOptions = Array.from(
     new Set(students.map((student) => student.program).filter(Boolean)),

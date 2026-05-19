@@ -1,45 +1,21 @@
-import { useEffect, useState } from 'react'
-import {
-  createProgram,
-  deleteProgram,
-  getPrograms,
-  updateProgram,
-} from '../services/Services'
+import { useState } from 'react'
+import { useEnrollmentData } from '../hooks/useEnrollmentData'
 
 const emptyForm = {
   name: '',
 }
 
-const normalizeProgram = (program) => ({
-  id: program.id ?? program.Id ?? '',
-  name: program.name ?? program.Name ?? '',
-})
-
 function ProgramsPage() {
-  const [programs, setPrograms] = useState([])
-  const [status, setStatus] = useState({ loading: true, error: '' })
+  const {
+    programs,
+    status,
+    createProgramRecord,
+    updateProgramRecord,
+    deleteProgramRecord,
+  } = useEnrollmentData()
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editingId, setEditingId] = useState(null)
-
-  const loadPrograms = async () => {
-    setStatus({ loading: true, error: '' })
-    try {
-      const data = await getPrograms()
-      setPrograms(data.map(normalizeProgram))
-      setStatus({ loading: false, error: '' })
-    } catch (error) {
-      setPrograms([])
-      setStatus({
-        loading: false,
-        error: error?.message || 'Failed to load programs',
-      })
-    }
-  }
-
-  useEffect(() => {
-    loadPrograms()
-  }, [])
 
   const resetForm = () => {
     setForm(emptyForm)
@@ -63,11 +39,10 @@ function ProgramsPage() {
 
     try {
       if (editingId) {
-        await updateProgram(editingId, { name: form.name.trim() })
+        await updateProgramRecord(editingId, { name: form.name.trim() })
       } else {
-        await createProgram({ name: form.name.trim() })
+        await createProgramRecord({ name: form.name.trim() })
       }
-      await loadPrograms()
       resetForm()
     } catch (error) {
       setFormStatus({
@@ -85,8 +60,7 @@ function ProgramsPage() {
 
     setFormStatus({ submitting: true, error: '' })
     try {
-      await deleteProgram(programId)
-      await loadPrograms()
+      await deleteProgramRecord(programId)
       if (editingId === programId) {
         resetForm()
       }

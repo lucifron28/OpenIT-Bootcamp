@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react'
-import {
-  createSection,
-  deleteSection,
-  getPrograms,
-  getSections,
-  updateSection,
-} from '../services/Services'
+import { useState } from 'react'
+import { useEnrollmentData } from '../hooks/useEnrollmentData'
 
 const emptyForm = {
   programId: '',
@@ -13,51 +7,20 @@ const emptyForm = {
   year: '',
 }
 
-const normalizeSection = (section) => ({
-  id: section.id ?? section.Id ?? '',
-  code: section.code ?? section.Code ?? '',
-  year: section.year ?? section.Year ?? '',
-  programId: Number(section.programId ?? section.ProgramId ?? 0),
-})
-
-const normalizeProgram = (program) => ({
-  id: Number(program.id ?? program.Id ?? 0),
-  name: program.name ?? program.Name ?? '',
-})
-
 function SectionsPage() {
-  const [sections, setSections] = useState([])
-  const [programs, setPrograms] = useState([])
-  const [status, setStatus] = useState({ loading: true, error: '' })
+  const {
+    sections,
+    programs,
+    status,
+    createSectionRecord,
+    updateSectionRecord,
+    deleteSectionRecord,
+  } = useEnrollmentData()
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editing, setEditing] = useState(null)
 
   const programMap = new Map(programs.map((program) => [program.id, program.name]))
-
-  const loadData = async () => {
-    setStatus({ loading: true, error: '' })
-    try {
-      const [sectionsData, programsData] = await Promise.all([
-        getSections(),
-        getPrograms(),
-      ])
-      setSections(sectionsData.map(normalizeSection))
-      setPrograms(programsData.map(normalizeProgram))
-      setStatus({ loading: false, error: '' })
-    } catch (error) {
-      setSections([])
-      setPrograms([])
-      setStatus({
-        loading: false,
-        error: error?.message || 'Failed to load sections',
-      })
-    }
-  }
-
-  useEffect(() => {
-    loadData()
-  }, [])
 
   const resetForm = () => {
     setForm(emptyForm)
@@ -104,11 +67,10 @@ function SectionsPage() {
 
     try {
       if (editing) {
-        await updateSection(editing.programId, editing.code, payload)
+        await updateSectionRecord(editing.programId, editing.code, payload)
       } else {
-        await createSection(programValue, payload)
+        await createSectionRecord(programValue, payload)
       }
-      await loadData()
       resetForm()
     } catch (error) {
       setFormStatus({
@@ -126,8 +88,7 @@ function SectionsPage() {
 
     setFormStatus({ submitting: true, error: '' })
     try {
-      await deleteSection(section.programId, section.code)
-      await loadData()
+      await deleteSectionRecord(section.programId, section.code)
       if (editing && editing.programId === section.programId && editing.code === section.code) {
         resetForm()
       }
