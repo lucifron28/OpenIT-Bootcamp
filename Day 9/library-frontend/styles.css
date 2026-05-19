@@ -1,0 +1,165 @@
+:root {
+    --red: #CD172D;
+    --navy: #0E0F30;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fefefe;
+    color: var(--navy);
+    height: 100vh;
+}
+
+header {
+    background-color: var(--navy);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 1.5rem;
+    align-items: center;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: var(--red);
+}
+
+.container {
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.book-catalog {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#genres-dropdown {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.book-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    padding: 2rem 5rem;
+}
+
+.book-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.line {
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--red);
+}
+
+.book-content {
+    padding: 15px;
+}
+
+.genre {
+    font-size: 0.9rem;
+    color: #4e51be; 
+    padding: 0.5rem;
+    width: fit-content;
+    background-color: #7d80db2c;
+    margin-bottom: 0.5rem;
+}
+
+.author, .year {
+    font-size: 0.9rem;
+    color: #7a7777;
+    margin-bottom: 0.5rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding: 0.5rem;
+}
+
+.status-circle-available {
+    width: 0.9rem;
+    height: 0.9rem;
+    background-color: #28a745; 
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-circle-unavailable {
+    width: 0.9rem;
+    height: 0.9rem;
+    background-color: var(--red); 
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-text-available {
+    color: #28a745; 
+    font-weight: bold;
+}
+
+.status-text-unavailable {
+    color: var(--red);
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.lend-btn {
+    all: unset;
+    cursor: pointer;
+    color: #4e51be;
+    font-weight: bold;
+}
+
+.delete-btn {
+    all: unset;
+    color: var(--red);
+    font-weight: bold;
+    cursor: pointer;
+}

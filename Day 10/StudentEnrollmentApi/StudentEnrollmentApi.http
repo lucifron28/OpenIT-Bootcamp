@@ -1,0 +1,87 @@
+@HostAddress = http://localhost:5001
+@ContentType = application/json
+@ProgramId = 1
+@SectionCode = CS101
+@StudentId = 1
+
+### ==================== PROGRAMS ====================
+
+### GET all programs
+GET {{HostAddress}}/api/programs
+Accept: {{ContentType}}
+
+### GET program by id
+GET {{HostAddress}}/api/programs/{{ProgramId}}
+Accept: {{ContentType}}
+
+### POST - Create program
+POST {{HostAddress}}/api/programs
+Content-Type: {{ContentType}}
+
+{
+	"name": "Computer Science"
+}
+
+### PUT - Update program name
+PUT {{HostAddress}}/api/programs/{{ProgramId}}
+Content-Type: {{ContentType}}
+
+{
+	"name": "Computer Science"
+}
+
+### DELETE program by id
+DELETE {{HostAddress}}/api/programs/{{ProgramId}}
+Accept: {{ContentType}}
+
+### ==================== SECTIONS ====================
+
+### GET sections by program id
+GET {{HostAddress}}/api/programs/{{ProgramId}}/sections
+Accept: {{ContentType}}
+
+### GET all sections
+GET {{HostAddress}}/api/sections
+Accept: {{ContentType}}
+
+### POST - Create section under program
+POST {{HostAddress}}/api/programs/{{ProgramId}}/sections
+Content-Type: {{ContentType}}
+
+{
+	"code": "CS101",
+	"year": 1
+}
+
+### PUT - Update section under program
+PUT {{HostAddress}}/api/programs/{{ProgramId}}/sections/{{SectionCode}}
+Content-Type: {{ContentType}}
+
+{
+	"code": "CS101",
+	"year": 2
+}
+
+### DELETE section under program
+DELETE {{HostAddress}}/api/programs/{{ProgramId}}/sections/{{SectionCode}}
+Accept: {{ContentType}}
+
+### ==================== STUDENT ROWS ====================
+
+### GET students table rows
+GET {{HostAddress}}/api/programs/students
+Accept: {{ContentType}}
+
+### ==================== STUDENT LOOKUP ====================
+
+### GET student by program, section code, and student id
+GET {{HostAddress}}/api/programs/{{ProgramId}}/sections/{{SectionCode}}/student/{{StudentId}}
+Accept: {{ContentType}}
+
+### ==================== STUDENTS ====================
+
+### GET all students
+GET {{HostAddress}}/api/students
+Accept: {{ContentType}}
+
+
