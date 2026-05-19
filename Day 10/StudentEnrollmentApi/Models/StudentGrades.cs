@@ -12,5 +12,5 @@ public class StudentGrades
     public int StudentId { get; set;}
     [Required]
     public int Grade { get; set; }
-    public Student Students { get; set; } = new();
+    public Student? Students { get; set; }
 }

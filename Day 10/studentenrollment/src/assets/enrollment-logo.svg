@@ -1,7 +1,0 @@
-<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Enrollment logo">
-  <rect width="40" height="40" rx="8" fill="#171a34"/>
-  <path d="M10 13h20v16H10z" fill="#f6f7fb"/>
-  <path d="M13 17h14M13 21h14M13 25h8" stroke="#171a34" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="29" cy="28" r="6" fill="#e33b4b"/>
-  <path d="M26 28l2 2 4-5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>

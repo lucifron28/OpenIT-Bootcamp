@@ -14,6 +14,6 @@ public class StudentSection
     [Required]
     public int SectionId { get; set; }
     public DateTime EnrolledAt { get; set; } = DateTime.UtcNow;
-    public Student Students { get; set; } = new();
-    public Section Sections { get; set; } = new();
+    public Student? Students { get; set; }
+    public Section? Sections { get; set; }
 }
