@@ -17,6 +17,7 @@ function StudentsPage() {
     programs,
     sections,
     status,
+    auth,
     getStudentDetails,
     createStudentRecord,
     updateStudentRecord,
@@ -25,6 +26,7 @@ function StudentsPage() {
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editingId, setEditingId] = useState(null)
+  const canMutate = auth.isAuthenticated
 
   const resetForm = () => {
     setForm(emptyForm)
@@ -64,6 +66,14 @@ function StudentsPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to create or update students.',
+      })
+      return
+    }
+
     setFormStatus({ submitting: true, error: '' })
 
     const yearValue = Number(form.year)
@@ -113,6 +123,14 @@ function StudentsPage() {
   }
 
   const handleDelete = async (studentId) => {
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to delete students.',
+      })
+      return
+    }
+
     const confirmed = window.confirm('Delete this student record?')
     if (!confirmed) {
       return
@@ -161,6 +179,9 @@ function StudentsPage() {
           {editingId ? 'Edit Student' : 'Add Student'}
         </h3>
         <form className="crud-form" onSubmit={handleSubmit}>
+          {!canMutate ? (
+            <div className="crud-alert">Login to create, update, or delete students.</div>
+          ) : null}
           <div className="form-grid">
             <label className="form-field">
               <span>First Name</span>
@@ -266,7 +287,7 @@ function StudentsPage() {
             <div className="crud-alert error">{formStatus.error}</div>
           ) : null}
           <div className="form-actions">
-            <button className="btn" type="submit" disabled={formStatus.submitting}>
+            <button className="btn" type="submit" disabled={!canMutate || formStatus.submitting}>
               {editingId ? 'Update Student' : 'Create Student'}
             </button>
             {editingId ? (
@@ -316,7 +337,7 @@ function StudentsPage() {
                       className="btn btn-secondary"
                       type="button"
                       onClick={() => handleEdit(student)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Edit
                     </button>
@@ -324,7 +345,7 @@ function StudentsPage() {
                       className="btn btn-danger"
                       type="button"
                       onClick={() => handleDelete(student.studentId)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Delete
                     </button>

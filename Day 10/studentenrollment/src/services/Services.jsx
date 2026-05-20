@@ -15,13 +15,19 @@ const API_URL = `${API_BASE}/api`
 const buildUrl = (path) =>
     `${API_URL}${path.startsWith('/') ? path : `/${path}`}`
 
+const buildRootUrl = (path) =>
+    `${API_BASE}${path.startsWith('/') ? path : `/${path}`}`
+
 const requestJson = async (path, options = {}) => {
-    const response = await fetch(buildUrl(path), {
+    const { root, headers, ...requestOptions } = options
+    const url = root ? buildRootUrl(path) : buildUrl(path)
+    const response = await fetch(url, {
+        credentials: 'include',
         headers: {
-            ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-            ...(options.headers ?? {}),
+            ...(requestOptions.body ? { 'Content-Type': 'application/json' } : {}),
+            ...(headers ?? {}),
         },
-        ...options,
+        ...requestOptions,
     })
 
     if (!response.ok) {
@@ -40,6 +46,31 @@ const requestJson = async (path, options = {}) => {
 
     return response.json()
 }
+
+export const login = async (credentials) =>
+    requestJson('/login?useCookies=true', {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        root: true,
+    })
+
+export const register = async (credentials) =>
+    requestJson('/register', {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+        root: true,
+    })
+
+export const logout = async () =>
+    requestJson('/logout', {
+        method: 'POST',
+        root: true,
+    })
+
+export const getCurrentUser = async () =>
+    requestJson('/manage/info', {
+        root: true,
+    })
 
 export const getStudents = async () => requestJson('/students')
 

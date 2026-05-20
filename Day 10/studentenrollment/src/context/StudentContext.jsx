@@ -7,10 +7,14 @@ import {
   deleteProgram,
   deleteSection,
   deleteStudent,
+  getCurrentUser,
   getPrograms,
   getSections,
   getStudentById,
   getStudents,
+  login,
+  logout,
+  register,
   setStudentSection,
   updateProgram,
   updateSection,
@@ -30,6 +34,12 @@ export const StudentProvider = ({ children }) => {
   const [programs, setPrograms] = useState([])
   const [sections, setSections] = useState([])
   const [status, setStatus] = useState({ loading: true, error: '' })
+  const [auth, setAuth] = useState({
+    checking: true,
+    isAuthenticated: false,
+    email: '',
+    error: '',
+  })
 
   const loadData = async () => {
     setStatus({ loading: true, error: '' })
@@ -60,10 +70,11 @@ export const StudentProvider = ({ children }) => {
 
     const loadInitialData = async () => {
       try {
-        const [studentsData, programsData, sectionsData] = await Promise.all([
+        const [studentsData, programsData, sectionsData, currentUser] = await Promise.all([
           getStudents(),
           getPrograms(),
           getSections(),
+          getCurrentUser().catch(() => null),
         ])
 
         if (!isActive) {
@@ -73,6 +84,12 @@ export const StudentProvider = ({ children }) => {
         setStudents((studentsData ?? []).map(normalizeStudentRow))
         setPrograms((programsData ?? []).map(normalizeProgram))
         setSections((sectionsData ?? []).map(normalizeSection))
+        setAuth({
+          checking: false,
+          isAuthenticated: Boolean(currentUser?.email),
+          email: currentUser?.email ?? '',
+          error: '',
+        })
         setStatus({ loading: false, error: '' })
       } catch (error) {
         if (!isActive) {
@@ -86,6 +103,7 @@ export const StudentProvider = ({ children }) => {
           loading: false,
           error: error?.message || 'Failed to load enrollment data',
         })
+        setAuth((current) => ({ ...current, checking: false }))
       }
     }
 
@@ -98,6 +116,73 @@ export const StudentProvider = ({ children }) => {
 
   const reload = async () => {
     await loadData()
+  }
+
+  const refreshAuth = async () => {
+    try {
+      const currentUser = await getCurrentUser()
+      setAuth({
+        checking: false,
+        isAuthenticated: Boolean(currentUser?.email),
+        email: currentUser?.email ?? '',
+        error: '',
+      })
+      return currentUser
+    } catch {
+      setAuth({
+        checking: false,
+        isAuthenticated: false,
+        email: '',
+        error: '',
+      })
+      return null
+    }
+  }
+
+  const loginUser = async (email, password) => {
+    setAuth((current) => ({ ...current, checking: true, error: '' }))
+    try {
+      await login({ email, password })
+      await refreshAuth()
+    } catch (error) {
+      setAuth({
+        checking: false,
+        isAuthenticated: false,
+        email: '',
+        error: error?.message || 'Failed to login',
+      })
+      throw error
+    }
+  }
+
+  const registerUser = async (email, password) => {
+    setAuth((current) => ({ ...current, checking: true, error: '' }))
+    try {
+      await register({ email, password })
+      await login({ email, password })
+      await refreshAuth()
+    } catch (error) {
+      setAuth((current) => ({
+        ...current,
+        checking: false,
+        error: error?.message || 'Failed to register',
+      }))
+      throw error
+    }
+  }
+
+  const logoutUser = async () => {
+    try {
+      await logout()
+    } catch {
+    }
+
+    setAuth({
+      checking: false,
+      isAuthenticated: false,
+      email: '',
+      error: '',
+    })
   }
 
   const getStudentDetails = async (studentId) => {
@@ -169,7 +254,11 @@ export const StudentProvider = ({ children }) => {
         programs,
         sections,
         status,
+        auth,
         reload,
+        loginUser,
+        registerUser,
+        logoutUser,
         getStudentDetails,
         createStudentRecord,
         updateStudentRecord,

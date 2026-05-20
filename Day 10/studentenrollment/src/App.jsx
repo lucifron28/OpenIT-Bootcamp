@@ -6,12 +6,13 @@ import StatsPanel from './components/StatsPanel'
 import StudentsTable from './components/StudentsTable'
 import TopBar from './components/TopBar'
 import { useEnrollmentData } from './hooks/useEnrollmentData'
+import AuthPage from './pages/AuthPage'
 import ProgramsPage from './pages/ProgramsPage'
 import SectionsPage from './pages/SectionsPage'
 import StudentsPage from './pages/StudentsPage'
 
 function App() {
-  const { students, status } = useEnrollmentData()
+  const { students, status, auth, logoutUser } = useEnrollmentData()
   const [searchText, setSearchText] = useState('')
   const [programFilter, setProgramFilter] = useState('')
   const [yearFilter, setYearFilter] = useState('')
@@ -70,6 +71,15 @@ function App() {
     if (activePage === 'sections') {
       return <SectionsPage />
     }
+    if (activePage === 'login' || activePage === 'register') {
+      return (
+        <AuthPage
+          mode={activePage}
+          onModeChange={setActivePage}
+          onAuthenticated={() => setActivePage('overview')}
+        />
+      )
+    }
 
     return (
       <>
@@ -91,7 +101,12 @@ function App() {
 
   return (
     <>
-      <TopBar />
+      <TopBar
+        auth={auth}
+        onLoginClick={() => setActivePage('login')}
+        onRegisterClick={() => setActivePage('register')}
+        onLogoutClick={logoutUser}
+      />
 
       <nav className="page-nav">
         <button

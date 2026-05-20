@@ -12,6 +12,7 @@ function SectionsPage() {
     sections,
     programs,
     status,
+    auth,
     createSectionRecord,
     updateSectionRecord,
     deleteSectionRecord,
@@ -19,6 +20,7 @@ function SectionsPage() {
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editing, setEditing] = useState(null)
+  const canMutate = auth.isAuthenticated
 
   const programMap = new Map(programs.map((program) => [program.id, program.name]))
 
@@ -39,6 +41,14 @@ function SectionsPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to create or update sections.',
+      })
+      return
+    }
+
     setFormStatus({ submitting: true, error: '' })
 
     const yearValue = Number(form.year)
@@ -81,6 +91,14 @@ function SectionsPage() {
   }
 
   const handleDelete = async (section) => {
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to delete sections.',
+      })
+      return
+    }
+
     const confirmed = window.confirm('Delete this section?')
     if (!confirmed) {
       return
@@ -123,6 +141,9 @@ function SectionsPage() {
           {editing ? 'Edit Section' : 'Add Section'}
         </h3>
         <form className="crud-form" onSubmit={handleSubmit}>
+          {!canMutate ? (
+            <div className="crud-alert">Login to create, update, or delete sections.</div>
+          ) : null}
           <div className="form-grid">
             <label className="form-field">
               <span>Program</span>
@@ -170,7 +191,7 @@ function SectionsPage() {
             <div className="crud-alert error">{formStatus.error}</div>
           ) : null}
           <div className="form-actions">
-            <button className="btn" type="submit" disabled={formStatus.submitting}>
+            <button className="btn" type="submit" disabled={!canMutate || formStatus.submitting}>
               {editing ? 'Update Section' : 'Create Section'}
             </button>
             {editing ? (
@@ -214,7 +235,7 @@ function SectionsPage() {
                       className="btn btn-secondary"
                       type="button"
                       onClick={() => handleEdit(section)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Edit
                     </button>
@@ -222,7 +243,7 @@ function SectionsPage() {
                       className="btn btn-danger"
                       type="button"
                       onClick={() => handleDelete(section)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Delete
                     </button>

@@ -9,6 +9,7 @@ function ProgramsPage() {
   const {
     programs,
     status,
+    auth,
     createProgramRecord,
     updateProgramRecord,
     deleteProgramRecord,
@@ -16,6 +17,7 @@ function ProgramsPage() {
   const [formStatus, setFormStatus] = useState({ submitting: false, error: '' })
   const [form, setForm] = useState(emptyForm)
   const [editingId, setEditingId] = useState(null)
+  const canMutate = auth.isAuthenticated
 
   const resetForm = () => {
     setForm(emptyForm)
@@ -30,6 +32,14 @@ function ProgramsPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to create or update programs.',
+      })
+      return
+    }
+
     setFormStatus({ submitting: true, error: '' })
 
     if (!form.name.trim()) {
@@ -53,6 +63,14 @@ function ProgramsPage() {
   }
 
   const handleDelete = async (programId) => {
+    if (!canMutate) {
+      setFormStatus({
+        submitting: false,
+        error: 'Login is required to delete programs.',
+      })
+      return
+    }
+
     const confirmed = window.confirm('Delete this program?')
     if (!confirmed) {
       return
@@ -95,6 +113,9 @@ function ProgramsPage() {
           {editingId ? 'Edit Program' : 'Add Program'}
         </h3>
         <form className="crud-form" onSubmit={handleSubmit}>
+          {!canMutate ? (
+            <div className="crud-alert">Login to create, update, or delete programs.</div>
+          ) : null}
           <div className="form-grid">
             <label className="form-field">
               <span>Program Name</span>
@@ -112,7 +133,7 @@ function ProgramsPage() {
             <div className="crud-alert error">{formStatus.error}</div>
           ) : null}
           <div className="form-actions">
-            <button className="btn" type="submit" disabled={formStatus.submitting}>
+            <button className="btn" type="submit" disabled={!canMutate || formStatus.submitting}>
               {editingId ? 'Update Program' : 'Create Program'}
             </button>
             {editingId ? (
@@ -152,7 +173,7 @@ function ProgramsPage() {
                       className="btn btn-secondary"
                       type="button"
                       onClick={() => handleEdit(program)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Edit
                     </button>
@@ -160,7 +181,7 @@ function ProgramsPage() {
                       className="btn btn-danger"
                       type="button"
                       onClick={() => handleDelete(program.id)}
-                      disabled={formStatus.submitting}
+                      disabled={!canMutate || formStatus.submitting}
                     >
                       Delete
                     </button>

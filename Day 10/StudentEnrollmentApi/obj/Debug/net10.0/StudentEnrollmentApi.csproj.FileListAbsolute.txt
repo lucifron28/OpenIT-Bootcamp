@@ -245,3 +245,4 @@ C:\Cada-OpenIT-Bootcamp\Day 10\StudentEnrollmentApi\obj\Debug\net10.0\StudentEnr
 C:\Cada-OpenIT-Bootcamp\Day 10\StudentEnrollmentApi\obj\Debug\net10.0\StudentEnrollmentApi.genruntimeconfig.cache
 C:\Cada-OpenIT-Bootcamp\Day 10\StudentEnrollmentApi\obj\Debug\net10.0\ref\StudentEnrollmentApi.dll
 C:\Cada-OpenIT-Bootcamp\Day 10\StudentEnrollmentApi\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Ron\Documents\projects\OpenIT-Bootcamp\Day 10\StudentEnrollmentApi\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

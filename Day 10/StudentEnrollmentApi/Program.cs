@@ -11,6 +11,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<EnrollmentContext>();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
     .AddEntityFrameworkStores<EnrollmentContext>();
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddScoped<ProgramsService>();
 builder.Services.AddScoped<StudentsService>();
@@ -19,7 +20,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
     {
-        builder.AllowAnyOrigin()
+        builder.WithOrigins("http://localhost:5173", "http://127.0.0.1:5173")
+               .AllowCredentials()
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
@@ -38,10 +40,15 @@ else
 }
 app.UseStaticFiles();
 app.UseCors("AllowAll");
-app.MapControllers();
-app.MapIdentityApi<ApplicationUser>();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
+app.MapIdentityApi<ApplicationUser>();
+app.MapPost("/logout", async (SignInManager<ApplicationUser> signInManager) =>
+{
+    await signInManager.SignOutAsync();
+    return Results.Ok();
+}).RequireAuthorization();
 
 using (var scope = app.Services.CreateScope())
 {
