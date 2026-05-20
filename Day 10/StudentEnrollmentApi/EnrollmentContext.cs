@@ -1,10 +1,11 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using StudentEnrollmentApi.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace StudentEnrollmentApi;
 
-public class EnrollmentContext : DbContext
+public class EnrollmentContext(DbContextOptions<EnrollmentContext> options) : IdentityDbContext<ApplicationUser>(options) 
 {
     public DbSet<Student> Student { get; set; }
     public DbSet<Section> Section { get; set; }

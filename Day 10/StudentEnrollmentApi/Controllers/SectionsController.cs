@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentEnrollmentApi.Models;
 using StudentEnrollmentApi.Services;
@@ -10,6 +11,7 @@ namespace StudentEnrollmentApi.Controllers
     {
         private readonly SectionsService _service = service;
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<Section>> GetAll()
         {

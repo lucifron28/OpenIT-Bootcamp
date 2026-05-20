@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentEnrollmentApi.Models;
 using StudentEnrollmentApi.Services;
@@ -10,6 +11,7 @@ namespace StudentEnrollmentApi.Controllers
     {
         private readonly ProgramsService _service = service;
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<Programs>> GetAll()
         {
@@ -23,6 +25,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("{id:int}")]
         public ActionResult<Programs> GetById(int id)
         {
@@ -40,6 +43,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<Programs> Create(Programs program)
         {
@@ -54,6 +58,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id:int}")]
         public IActionResult Update(int id, Programs program)
         {
@@ -72,6 +77,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
@@ -90,6 +96,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("{programId:int}/sections")]
         public ActionResult<IEnumerable<Section>> GetSectionsByProgram(int programId)
         {
@@ -107,6 +114,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("{programId:int}/sections/{sectionCode}")]
         public ActionResult<Section> GetSectionByCode(int programId, string sectionCode)
         {
@@ -124,6 +132,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost("{programId:int}/sections")]
         public ActionResult<Section> CreateSection(int programId, Section section)
         {
@@ -142,6 +151,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{programId:int}/sections/{sectionCode}")]
         public IActionResult UpdateSection(int programId, string sectionCode, Section section)
         {
@@ -160,6 +170,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{programId:int}/sections/{sectionCode}")]
         public IActionResult DeleteSection(int programId, string sectionCode)
         {
@@ -178,6 +189,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("{programId:int}/sections/{sectionCode}/student/{studentId:int}")]
         public ActionResult<IEnumerable<Student>> GetStudentByProgramSectionAndStudent(int programId, string sectionCode, int studentId)
         {

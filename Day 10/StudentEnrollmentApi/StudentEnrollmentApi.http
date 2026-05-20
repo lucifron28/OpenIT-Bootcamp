@@ -85,3 +85,24 @@ GET {{HostAddress}}/api/students
 Accept: {{ContentType}}
 
 
+
+### Test IdentityUser API endpoints
+
+### register new user
+POST  {{{{HostAddress}}}}/register
+Content-Type: {{ContentType}}
+
+{
+	"email": "ron@example.com",
+	"password": "demo1234"
+}
+
+
+### login user and get token
+POST {{{{{HostAddress}}}}}/login
+constent-Type: {{ContentType}}
+
+{
+	"email": "ron@example.com",
+	"password": "demo1234"
+}

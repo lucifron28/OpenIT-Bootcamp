@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "gS3VDwRl1no=",
+  "dgSpecHash": "hWZ0kpCL8SQ=",
   "success": true,
   "projectFilePath": "C:\\Cada-OpenIT-Bootcamp\\Day 10\\StudentEnrollmentApi\\StudentEnrollmentApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CL3\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\CL3\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.8\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.8.nupkg.sha512",
     "C:\\Users\\CL3\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.7\\microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512",
     "C:\\Users\\CL3\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",
     "C:\\Users\\CL3\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.11.0\\microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",

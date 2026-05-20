@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentEnrollmentApi.Models;
 using StudentEnrollmentApi.Services;
@@ -15,6 +16,7 @@ namespace StudentEnrollmentApi.Controllers
     {
         private readonly StudentsService _service = service;
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<StudentRow>> GetAll()
         {
@@ -46,6 +48,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<Student> Create(Student student)
         {
@@ -60,6 +63,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id:int}")]
         public IActionResult Update(int id, Student student)
         {
@@ -78,6 +82,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id:int}/section")]
         public IActionResult UpdateSection(int id, StudentSectionRequest request)
         {
@@ -101,6 +106,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id:int}/section/{sectionId:int}")]
         public IActionResult UpdateSectionById(int id, int sectionId)
         {
@@ -124,6 +130,7 @@ namespace StudentEnrollmentApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {

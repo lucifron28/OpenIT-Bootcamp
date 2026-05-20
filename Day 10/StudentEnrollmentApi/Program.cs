@@ -1,6 +1,7 @@
 using StudentEnrollmentApi;
 using StudentEnrollmentApi.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<EnrollmentContext>();
+builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+    .AddEntityFrameworkStores<EnrollmentContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<ProgramsService>();
 builder.Services.AddScoped<StudentsService>();
@@ -36,6 +39,9 @@ else
 app.UseStaticFiles();
 app.UseCors("AllowAll");
 app.MapControllers();
+app.MapIdentityApi<ApplicationUser>();
+app.UseAuthentication();
+app.UseAuthorization();
 
 using (var scope = app.Services.CreateScope())
 {
